@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows;
+using System.Windows.Media.Imaging;
 using Microsoft.Win32;
 using RecognitionLibrary;
 
@@ -12,7 +13,7 @@ namespace RecognitionApplication
             InitializeComponent();
         }
 
-        private void OpenFileButton_OnClick(object sender, RoutedEventArgs e)
+        private void OpenTxtFileButton_OnClick(object sender, RoutedEventArgs e)
         {
             var dialog = new OpenFileDialog();
             if (dialog.ShowDialog() != true)
@@ -21,6 +22,25 @@ namespace RecognitionApplication
             }
 
             var path = dialog.FileName;
+
+            Parse(path);
+        }
+
+        private void OpenImageButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            var dialog = new OpenFileDialog();
+            if (dialog.ShowDialog() != true)
+            {
+                return;
+            }
+
+            var path = dialog.FileName;
+
+            ShowImage(path);
+        }
+
+        private void Parse(string path)
+        {
             var lines = SymbolFileParser.ParseFile(path);
 
             var text = string.Empty;
@@ -30,6 +50,11 @@ namespace RecognitionApplication
             }
 
             FileTextBox.Text = text;
+        }
+
+        private void ShowImage(string path)
+        {
+            Image.Source = new BitmapImage(new Uri(path, UriKind.Absolute));
         }
     }
 }

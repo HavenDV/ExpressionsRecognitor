@@ -10,7 +10,13 @@
             <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="20"></RowDefinition>
         </Grid.RowDefinitions>
-        <TextBox Grid.Row="0" x:Name="FileTextBox"/>
-        <Button Grid.Row="1" Content="Open File" Click="OpenFileButton_OnClick"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="50*"></ColumnDefinition>
+            <ColumnDefinition Width="50*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <TextBox Grid.Row="0" Grid.Column="0" x:Name="FileTextBox"/>
+        <Image Grid.Row="0" Grid.Column="1" x:Name="Image"/>
+        <Button Grid.Row="1" Grid.Column="0" Content="Open Txt File" Click="OpenTxtFileButton_OnClick"/>
+        <Button Grid.Row="1" Grid.Column="1" Content="Open Image" Click="OpenImageButton_OnClick"/>
     </Grid>
 </Window>
