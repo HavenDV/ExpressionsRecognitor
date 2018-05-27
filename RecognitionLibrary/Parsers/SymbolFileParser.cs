@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 
-namespace RecognitionLibrary
+namespace RecognitionLibrary.Parsers
 {
     public static class SymbolFileParser
     {

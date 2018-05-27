@@ -2,7 +2,8 @@
 using System.Windows;
 using System.Windows.Media.Imaging;
 using Microsoft.Win32;
-using RecognitionLibrary;
+using RecognitionLibrary.Converters;
+using RecognitionLibrary.Parsers;
 
 namespace RecognitionApplication
 {
@@ -55,6 +56,9 @@ namespace RecognitionApplication
             }
 
             FileTextBox.Text = text;
+
+            var formula = LinesToWpfMathConverter.Convert(lines);
+            FormulaTextBox.Text = formula;
         }
 
         private void ShowImage(string path)

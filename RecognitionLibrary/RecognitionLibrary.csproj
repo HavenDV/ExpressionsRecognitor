@@ -34,7 +34,8 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="SymbolFileParser.cs" />
+    <Compile Include="Converters\LinesToWpfMathConverter.cs" />
+    <Compile Include="Parsers\SymbolFileParser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -1,4 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using RecognitionLibrary.Parsers;
 using RecognitionLibrary.Tests.Utilities;
 
 namespace RecognitionLibrary.Tests
