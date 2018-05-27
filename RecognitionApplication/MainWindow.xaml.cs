@@ -39,6 +39,11 @@ namespace RecognitionApplication
             ShowImage(path);
         }
 
+        private void FormulaTextBox_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        {
+            FormulaControl.Formula = FormulaTextBox.Text;
+        }
+
         private void Parse(string path)
         {
             var lines = SymbolFileParser.ParseFile(path);
