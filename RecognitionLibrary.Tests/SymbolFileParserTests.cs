@@ -37,7 +37,7 @@ namespace RecognitionLibrary.Tests
         public void ParseFileTest2()
         {
             var path = TestUtilities.GetTestDataPath("2.txt");
-
+            
             var lines = SymbolFileParser.ParseFile(path);
             Assert.IsNotNull(lines);
             Assert.AreEqual(12, lines.Count);
