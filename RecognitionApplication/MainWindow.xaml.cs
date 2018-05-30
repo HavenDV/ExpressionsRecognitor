@@ -24,7 +24,10 @@ namespace RecognitionApplication
 
         private void OpenTxtFileButton_OnClick(object sender, RoutedEventArgs e)
         {
-            var dialog = new OpenFileDialog();
+            var dialog = new OpenFileDialog
+            {
+                Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*"
+            };
             if (dialog.ShowDialog() != true)
             {
                 return;
@@ -37,7 +40,10 @@ namespace RecognitionApplication
 
         private void OpenImageButton_OnClick(object sender, RoutedEventArgs e)
         {
-            var dialog = new OpenFileDialog();
+            var dialog = new OpenFileDialog
+            {
+                Filter = "Image Files(*.BMP;*.JPG;*.GIF;*.PNG)|*.BMP;*.JPG;*.GIF;*.PNG|All files (*.*)|*.*"
+            };
             if (dialog.ShowDialog() != true)
             {
                 return;
