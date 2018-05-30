@@ -18,7 +18,10 @@
         </Grid.ColumnDefinitions>
         <controls:FormulaControl Grid.Row="0" Grid.Column="0" x:Name="FormulaControl" Formula="\left(x^2 + 2 \cdot x + 2\right) = 0"/>
         <TextBox Grid.Row="0" Grid.Column="1" x:Name="FileTextBox"/>
-        <Image Grid.Row="0" Grid.Column="2" x:Name="Image"/>
+        <Grid Grid.Row="0" Grid.Column="2" x:Name="ImageGrid">
+            <Image x:Name="Image" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            <Canvas x:Name="Canvas"/>
+        </Grid>
         <TextBox Grid.Row="1" Grid.Column="0" x:Name="FormulaTextBox" Text="\left(x^2 + 2 \cdot x + 2\right) = 0" TextChanged="FormulaTextBox_TextChanged"/>
         <Button Grid.Row="1" Grid.Column="1" Content="Open Txt File" Click="OpenTxtFileButton_OnClick"/>
         <Button Grid.Row="1" Grid.Column="2" Content="Open Image" Click="OpenImageButton_OnClick"/>
