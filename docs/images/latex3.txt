@@ -1,0 +1,1 @@
+\sum_{i=1}^{n} a_{1} x^{\delta_1}_{i} x^{\delta_j}_{j}

@@ -55,5 +55,31 @@ namespace RecognitionLibrary.Tests
             BaseLineTest(@"c", 830, 150, 63, 76, lines[10]);
             BaseLineTest(@")", 895, 120, 42, 136, lines[11]);
         }
+
+        [TestMethod]
+        public void ParseFileTest3()
+        {
+            var path = TestUtilities.GetTestDataPath("3.txt");
+
+            var lines = SymbolFileParser.ParseFile(path);
+            Assert.IsNotNull(lines);
+            Assert.AreEqual(15, lines.Count);
+
+            BaseLineTest(@"n", 200, 140, 112, 122, lines[0]);
+            BaseLineTest(@"\sum", 60, 290, 400, 510, lines[1]);
+            BaseLineTest(@"i", 120, 861, 61, 100, lines[2]);
+            BaseLineTest(@"=", 191, 920, 131, 61, lines[3]);
+            BaseLineTest(@"1", 330, 850, 67, 161, lines[4]);
+            BaseLineTest(@"a", 520, 470, 191, 181, lines[5]);
+            BaseLineTest(@"1", 720, 580, 71, 161, lines[6]);
+            BaseLineTest(@"x", 830, 460, 191, 191, lines[7]);
+            BaseLineTest(@"\delta", 1050, 300, 132, 171, lines[8]);
+            BaseLineTest(@"1", 1170, 410, 48, 116, lines[9]);
+            BaseLineTest(@"i", 130, 590, 62, 153, lines[10]);
+            BaseLineTest(@"x", 1280, 460, 192, 188, lines[11]);
+            BaseLineTest(@"\delta", 1500, 269, 140, 170, lines[12]);
+            BaseLineTest(@"j", 1620, 380, 81, 142, lines[13]);
+            BaseLineTest(@"j", 1480, 590, 111, 201, lines[14]);
+        }
     }
 }
