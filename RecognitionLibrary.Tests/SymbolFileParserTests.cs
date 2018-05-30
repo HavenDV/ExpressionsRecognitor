@@ -16,12 +16,12 @@ namespace RecognitionLibrary.Tests
             Assert.IsNotNull(lines);
             Assert.AreEqual(6, lines.Count);
 
-            BaseLineTest(@"\surd", 382, 230, 49, 33, lines[0]);
-            BaseLineTest(@"t", 370, 220, 39, 23, lines[1]);
-            BaseLineTest(@"=", 392, 209, 49, 13, lines[2]);
-            BaseLineTest(@"S", 422, 290, 34, 45, lines[3]);
-            BaseLineTest(@"-", 422, 240, 34, 5, lines[4]);
-            BaseLineTest(@"u", 422, 200, 34, 22, lines[5]);
+            BaseLineTest(@"\surd", 10, 340, 401, 291, lines[0]);
+            BaseLineTest(@"t", 200, 379, 130, 242, lines[1]);
+            BaseLineTest(@"=", 440, 449, 222, 113, lines[2]);
+            BaseLineTest(@"S", 739, 99, 213, 283, lines[3]);
+            BaseLineTest(@"-", 709, 490, 292, 42, lines[4]);
+            BaseLineTest(@"u", 750, 640, 211, 222, lines[5]);
         }
 
         private static void BaseLineTest(string s, int x, int y, int w, int h, SymbolFileParser.Line actual)
@@ -42,18 +42,18 @@ namespace RecognitionLibrary.Tests
             Assert.IsNotNull(lines);
             Assert.AreEqual(12, lines.Count);
 
-            BaseLineTest(@"p", 124, 203, 35, 48, lines[0]);
-            BaseLineTest(@"=", 159, 205, 49, 13, lines[1]);
-            BaseLineTest(@"1", 190, 262, 29, 45, lines[2]);
-            BaseLineTest(@"-", 191, 201, 10, 15, lines[3]);
-            BaseLineTest(@"2", 193, 260, 30, 42, lines[4]);
-            BaseLineTest(@"(", 200, 202, 10, 41, lines[5]);
-            BaseLineTest(@"a", 208, 206, 25, 33, lines[6]);
-            BaseLineTest(@"+", 212, 201, 19, 23, lines[7]);
-            BaseLineTest(@"b", 219, 209, 22, 29, lines[8]);
-            BaseLineTest(@"+", 224, 202, 18, 23, lines[9]);
-            BaseLineTest(@"c", 231, 205, 20, 31, lines[10]);
-            BaseLineTest(@")", 240, 203, 11, 40, lines[11]);
+            BaseLineTest(@"p", 25, 150, 86, 106, lines[0]);
+            BaseLineTest(@"=", 160, 155, 91, 52, lines[1]);
+            BaseLineTest(@"1", 185, 36, 61, 100, lines[2]);
+            BaseLineTest(@"-", 265, 175, 95, 20, lines[3]);
+            BaseLineTest(@"2", 280, 235, 66, 100, lines[4]);
+            BaseLineTest(@"(", 375, 120, 45, 136, lines[5]);
+            BaseLineTest(@"a", 425, 150, 66, 76, lines[6]);
+            BaseLineTest(@"+", 530, 145, 71, 71, lines[7]);
+            BaseLineTest(@"b", 625, 120, 71, 106, lines[8]);
+            BaseLineTest(@"+", 730, 145, 71, 71, lines[9]);
+            BaseLineTest(@"c", 830, 150, 63, 76, lines[10]);
+            BaseLineTest(@")", 895, 120, 42, 136, lines[11]);
         }
     }
 }
