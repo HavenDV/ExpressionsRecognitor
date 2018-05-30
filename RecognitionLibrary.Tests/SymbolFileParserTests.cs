@@ -24,7 +24,7 @@ namespace RecognitionLibrary.Tests
             BaseLineTest(@"u", 750, 640, 211, 222, lines[5]);
         }
 
-        private static void BaseLineTest(string s, int x, int y, int w, int h, SymbolFileParser.Line actual)
+        private static void BaseLineTest(string s, int x, int y, int w, int h, Line actual)
         {
             Assert.AreEqual(s, actual.Symbol);
             Assert.AreEqual(x, actual.X);
