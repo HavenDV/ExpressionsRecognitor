@@ -11,15 +11,16 @@ namespace RecognitionLibrary.Converters
         {
             var normalized = NormalizeLines(lines);
             var x = -1;
+            var delta = 100 / lines.Count;
             var groups = new List<List<Line>>();
             var currentGroup = new List<Line>();
             foreach (var line in normalized)
             {
-                if (!currentGroup.Any() || line.X + line.Width / 2 - x < 15)
+                if (!currentGroup.Any() || line.CenterX - x < delta)
                 {
                     if (x == -1)
                     {
-                        x = line.X + line.Width / 2;
+                        x = line.CenterX;
                     }
                     currentGroup.Add(line);
                     continue;
@@ -27,7 +28,7 @@ namespace RecognitionLibrary.Converters
 
                 groups.Add(currentGroup);
                 currentGroup = new List<Line> {line};
-                x = line.X + line.Width / 2;
+                x = line.CenterX;
             }
 
             if (currentGroup.Any())
