@@ -44,21 +44,26 @@ namespace RecognitionLibrary.Converters
             if (lines.Any(line => line.Symbol == "-"))
             {
                 var index = lines.FindIndex(line => line.Symbol == "-");
+                var first = ConvertGroup(lines.Take(index).ToList());
+                var second = ConvertGroup(lines.Skip(index + 1).ToList());
 
-                return $@"\frac{{{ConvertGroup(lines.Take(index).ToList())}}}{{{ConvertGroup(lines.Skip(index + 1).ToList())}}}";
+                return $@"\frac{{{first}}}{{{second}}}";
             }
 
             if (lines.Any(line => line.Symbol == @"\surd"))
             {
+                var first = ConvertGroup(lines.Skip(1).ToList());
 
-                return $@"\sqrt{{{ConvertGroup(lines.Skip(1).ToList())}}}";
+                return $@"\sqrt{{{first}}}";
             }
 
             if (lines.Any(line => line.Symbol == @"\sum"))
             {
                 var index = lines.FindIndex(line => line.Symbol == @"\sum");
+                var first = ConvertGroup(lines.Take(index).ToList());
+                var second = ConvertGroup(lines.Skip(index + 1).ToList());
 
-                return $@"\sum ^{{{ConvertGroup(lines.Take(index).ToList())}}} _{{{ConvertGroup(lines.Skip(index + 1).ToList())}}}";// Скорее всего нужно поправить
+                return $@"\sum ^{{{first}}} _{{{second}}}";// Скорее всего нужно поправить
             }
 
             return string.Join(" ", lines.Select(line => line.Symbol));
