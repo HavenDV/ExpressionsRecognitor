@@ -54,6 +54,13 @@ namespace RecognitionLibrary.Converters
                 return $@"\sqrt{{{ConvertGroup(lines.Skip(1).ToList())}}}";
             }
 
+            if (lines.Any(line => line.Symbol == @"\sum"))
+            {
+                var index = lines.FindIndex(line => line.Symbol == @"\sum");
+
+                return $@"\sum ^{{{ConvertGroup(lines.Take(index).ToList())}}} _{{{ConvertGroup(lines.Skip(index + 1).ToList())}}}";// Скорее всего нужно поправить
+            }
+
             return string.Join(" ", lines.Select(line => line.Symbol));
         }
 

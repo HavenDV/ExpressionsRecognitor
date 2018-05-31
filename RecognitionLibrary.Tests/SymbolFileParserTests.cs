@@ -18,7 +18,7 @@ namespace RecognitionLibrary.Tests
 
             BaseLineTest(@"\surd", 10, 340, 401, 291, lines[0]);
             BaseLineTest(@"t", 200, 379, 130, 242, lines[1]);
-            BaseLineTest(@"=", 440, 449, 222, 113, lines[2]);
+            BaseLineTest(@"=", 410, 450, 221, 111, lines[2]);
             BaseLineTest(@"S", 739, 99, 213, 283, lines[3]);
             BaseLineTest(@"-", 709, 490, 292, 42, lines[4]);
             BaseLineTest(@"u", 750, 640, 211, 222, lines[5]);
@@ -67,7 +67,7 @@ namespace RecognitionLibrary.Tests
 
             BaseLineTest(@"n", 200, 140, 112, 122, lines[0]);
             BaseLineTest(@"\sum", 60, 290, 400, 510, lines[1]);
-            BaseLineTest(@"i", 120, 861, 61, 100, lines[2]);
+            BaseLineTest(@"i", 120, 861, 61, 150, lines[2]);
             BaseLineTest(@"=", 191, 920, 131, 61, lines[3]);
             BaseLineTest(@"1", 330, 850, 67, 161, lines[4]);
             BaseLineTest(@"a", 520, 470, 191, 181, lines[5]);
@@ -75,7 +75,7 @@ namespace RecognitionLibrary.Tests
             BaseLineTest(@"x", 830, 460, 191, 191, lines[7]);
             BaseLineTest(@"\delta", 1050, 300, 132, 171, lines[8]);
             BaseLineTest(@"1", 1170, 410, 48, 116, lines[9]);
-            BaseLineTest(@"i", 130, 590, 62, 153, lines[10]);
+            BaseLineTest(@"i", 1030, 590, 62, 153, lines[10]);
             BaseLineTest(@"x", 1280, 460, 192, 188, lines[11]);
             BaseLineTest(@"\delta", 1500, 269, 140, 170, lines[12]);
             BaseLineTest(@"j", 1620, 380, 81, 142, lines[13]);
