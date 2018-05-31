@@ -44,7 +44,7 @@ namespace RecognitionLibrary.Tests
 
             BaseLineTest(@"p", 25, 150, 86, 106, lines[0]);
             BaseLineTest(@"=", 160, 155, 91, 52, lines[1]);
-            BaseLineTest(@"1", 185, 36, 61, 100, lines[2]);
+            BaseLineTest(@"1", 285, 36, 61, 100, lines[2]);
             BaseLineTest(@"-", 265, 175, 95, 20, lines[3]);
             BaseLineTest(@"2", 280, 235, 66, 100, lines[4]);
             BaseLineTest(@"(", 375, 120, 45, 136, lines[5]);
