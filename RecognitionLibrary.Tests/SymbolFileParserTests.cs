@@ -102,5 +102,22 @@ namespace RecognitionLibrary.Tests
             BaseLineTest(@"2", 470, 295, 68, 109, lines[8]);
             BaseLineTest(@"a", 545, 325, 75, 80, lines[9]);
         }
+
+        [TestMethod]
+        public void ParseFileTest5()
+        {
+            var path = TestUtilities.GetTestDataPath("5.txt");
+
+            var lines = SymbolFileParser.ParseFile(path);
+            Assert.IsNotNull(lines);
+            Assert.AreEqual(6, lines.Count);
+
+            BaseLineTest(@"e", 35, 60, 45, 55, lines[0]);
+            BaseLineTest(@"-", 85, 50, 43, 10, lines[1]);
+            BaseLineTest(@"\int", 145, 15, 35, 80, lines[2]);
+            BaseLineTest(@"x", 195, 35, 43, 44, lines[3]);
+            BaseLineTest(@"d", 239, 25, 42, 54, lines[4]);
+            BaseLineTest(@"x", 280, 38, 43, 40, lines[5]);
+        }
     }
 }
