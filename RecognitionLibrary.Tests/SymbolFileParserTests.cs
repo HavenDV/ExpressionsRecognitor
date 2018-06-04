@@ -119,5 +119,42 @@ namespace RecognitionLibrary.Tests
             BaseLineTest(@"d", 239, 25, 42, 54, lines[4]);
             BaseLineTest(@"x", 280, 38, 43, 40, lines[5]);
         }
+
+        [TestMethod]
+        public void ParseFileTest6()
+        {
+            var path = TestUtilities.GetTestDataPath("6.txt");
+
+            var lines = SymbolFileParser.ParseFile(path);
+            Assert.IsNotNull(lines);
+            Assert.AreEqual(7, lines.Count);
+
+            BaseLineTest(@"a", 70, 150, 60, 60, lines[0]);
+            BaseLineTest(@"+", 160, 140, 70, 70, lines[1]);
+            BaseLineTest(@"b", 265, 35, 56, 80, lines[2]);
+            BaseLineTest(@"-", 255, 125, 70, 10, lines[3]);
+            BaseLineTest(@"c", 260, 150, 47, 60, lines[4]);
+            BaseLineTest(@"-", 255, 225, 70, 8, lines[5]);
+            BaseLineTest(@"d", 260, 245, 60, 79, lines[6]);
+        }
+
+        [TestMethod]
+        public void ParseFileTest7()
+        {
+            var path = TestUtilities.GetTestDataPath("7.txt");
+
+            var lines = SymbolFileParser.ParseFile(path);
+            Assert.IsNotNull(lines);
+            Assert.AreEqual(8, lines.Count);
+
+            BaseLineTest(@"a", 30, 240, 90, 100, lines[0]);
+            BaseLineTest(@"p", 135, 325, 63, 83, lines[1]);
+            BaseLineTest(@"=", 285, 245, 115, 65, lines[2]);
+            BaseLineTest(@"u", 430, 125, 105, 93, lines[3]);
+            BaseLineTest(@"2", 545, 55, 52, 78, lines[4]);
+            BaseLineTest(@"x", 600, 20, 40, 48, lines[5]);
+            BaseLineTest(@"-", 410, 275, 230, 20, lines[6]);
+            BaseLineTest(@"r", 490, 390, 71, 93, lines[7]);
+        }
     }
 }
