@@ -81,5 +81,26 @@ namespace RecognitionLibrary.Tests
             BaseLineTest(@"j", 1620, 380, 81, 142, lines[13]);
             BaseLineTest(@"j", 1480, 590, 111, 201, lines[14]);
         }
+
+        [TestMethod]
+        public void ParseFileTest4()
+        {
+            var path = TestUtilities.GetTestDataPath("4.txt");
+
+            var lines = SymbolFileParser.ParseFile(path);
+            Assert.IsNotNull(lines);
+            Assert.AreEqual(10, lines.Count);
+
+            BaseLineTest(@"x", 25, 210, 75, 75, lines[0]);
+            BaseLineTest(@"2", 100, 260, 40, 65, lines[1]);
+            BaseLineTest(@"=", 205, 210, 102, 49, lines[2]);
+            BaseLineTest(@"b", 320, 75, 75, 115, lines[3]);
+            BaseLineTest(@"-", 425, 135, 47, 16, lines[4]);
+            BaseLineTest(@"\surd", 530, 30, 235, 170, lines[5]);
+            BaseLineTest(@"D", 635, 80, 116, 110, lines[6]);
+            BaseLineTest(@"-", 308, 235, 472, 16, lines[7]);
+            BaseLineTest(@"2", 470, 295, 68, 109, lines[8]);
+            BaseLineTest(@"a", 545, 325, 75, 80, lines[9]);
+        }
     }
 }
