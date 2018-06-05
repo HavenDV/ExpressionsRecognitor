@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace RecognitionLibrary.Converters
 {
@@ -11,6 +13,12 @@ namespace RecognitionLibrary.Converters
     {
         public static async Task<string> ConvertAsync(string path)
         {
+            var cache = TryGetCache(path);
+            if (!string.IsNullOrWhiteSpace(cache))
+            {
+                return cache;
+            }
+
             using (var client = new HttpClient())
             {
                 client.DefaultRequestHeaders.Add("app_id", "havendv_gmail_com");
@@ -27,6 +35,8 @@ namespace RecognitionLibrary.Converters
                 {
                     throw new Exception(answer.Error);
                 }
+
+                SaveToCache(path, answer.Latex);
 
                 return answer.Latex;
             }
@@ -45,5 +55,50 @@ namespace RecognitionLibrary.Converters
                 }
             }
         }
+
+
+        #region Cache
+
+
+        private static string GetCachePath() =>
+            Path.Combine(Path.GetTempPath(), "recognition.txt");
+
+        private static Dictionary<string, string> GetCache()
+        {
+            var tempPath = GetCachePath();
+            if (!File.Exists(tempPath))
+            {
+                return null;
+            }
+
+            var text = File.ReadAllText(tempPath);
+            var dictionary = JsonConvert.DeserializeObject<Dictionary<string, string>>(text);
+
+            return dictionary;
+        }
+
+        private static string TryGetCache(string path)
+        {
+            var dictionary = GetCache();
+            if (dictionary == null)
+            {
+                return null;
+            }
+
+            return dictionary.TryGetValue(path, out var result) ? result : null;
+        }
+
+        private static void SaveToCache(string path, string value)
+        {
+            var dictionary = GetCache() ?? new Dictionary<string, string>();
+            dictionary[path] = value;
+
+            var tempPath = GetCachePath();
+            var text = JsonConvert.SerializeObject(dictionary, Formatting.Indented);
+
+            File.WriteAllText(tempPath, text);
+        }
+
+        #endregion
     }
 }
