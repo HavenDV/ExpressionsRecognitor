@@ -1,0 +1,5 @@
+(x-c)(x^2+xc+c^2)=x^3-c^3
+
+или
+
+\left(x-c\right)\left(x^2+xc+c^2\right)=x^3-c^3
