@@ -38,7 +38,7 @@ namespace RecognitionApplication
             Parse(path);
         }
 
-        private void OpenImageButton_OnClick(object sender, RoutedEventArgs e)
+        private async void OpenImageButton_OnClick(object sender, RoutedEventArgs e)
         {
             var dialog = new OpenFileDialog
             {
@@ -52,6 +52,9 @@ namespace RecognitionApplication
             var path = dialog.FileName;
 
             ShowImage(path);
+
+            var latex = await ImageToLatexConverter.ConvertAsync(path);
+            FormulaTextBox.Text = latex;
         }
 
         private void FormulaTextBox_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
