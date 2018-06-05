@@ -1,9 +1,5 @@
 ﻿using System;
-using System.IO;
 using System.Windows;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using Microsoft.Win32;
 using RecognitionLibrary.Converters;
 using RecognitionLibrary.Parsers;
@@ -12,17 +8,33 @@ namespace RecognitionApplication
 {
     public partial class MainWindow
     {
-        private string ImagePath { get; set; }
+        #region Properties
+
         private string TxtPath { get; set; }
+        private string ImagePath { get; set; }
+        private string Status { set => StatusTextBlock.Text = value; }
+
+        #endregion
+
+        #region Constructors
 
         public MainWindow()
         {
             InitializeComponent();
-
-            SizeChanged += (o, e) => UpdateRectangles();
         }
 
-        private void OpenTxtFileButton_OnClick(object sender, RoutedEventArgs e)
+        #endregion
+        
+        #region Event Handlers
+
+        private void FormulaTextBox_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        {
+            FormulaControl.Formula = FormulaTextBox.Text;
+        }
+
+        #region Open Buttons
+
+        private void OpenTextFileButton_OnClick(object sender, RoutedEventArgs e)
         {
             var dialog = new OpenFileDialog
             {
@@ -33,9 +45,14 @@ namespace RecognitionApplication
                 return;
             }
 
-            var path = dialog.FileName;
+            TxtPath = dialog.FileName;
 
-            Parse(path);
+            ShowTextButton.IsEnabled = true;
+
+            var lines = SymbolFileParser.ParseFile(TxtPath);
+            var formula = LinesToWpfMathConverter.Convert(lines);
+
+            FormulaTextBox.Text = formula;
         }
 
         private async void OpenImageButton_OnClick(object sender, RoutedEventArgs e)
@@ -49,94 +66,42 @@ namespace RecognitionApplication
                 return;
             }
 
-            var path = dialog.FileName;
+            ImagePath = dialog.FileName;
 
-            ShowImage(path);
+            ShowImageButton.IsEnabled = true;
 
-            var latex = await ImageToLatexConverter.ConvertAsync(path);
-            FormulaTextBox.Text = latex;
-        }
+            Status = "Converting...";
 
-        private void FormulaTextBox_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
-        {
-            FormulaControl.Formula = FormulaTextBox.Text;
-        }
-
-        private void Parse(string path)
-        {
-            TxtPath = path;
-
-            var lines = SymbolFileParser.ParseFile(path);
-
-            var text = string.Empty;
-            foreach (var line in lines)
+            try
             {
-                text += $"Symbol: {line.Symbol}, X: {line.X}, Y: {line.Y}, Width: {line.Width}, Height: {line.Height}{Environment.NewLine}";
+                var latex = await ImageToLatexConverter.ConvertAsync(ImagePath);
+
+                FormulaTextBox.Text = latex;
+
+                Status = "Converted!";
             }
-
-            FileTextBox.Text = text;
-
-            var formula = LinesToWpfMathConverter.Convert(lines);
-            FormulaTextBox.Text = formula;
-
-            UpdateRectangles();
-        }
-
-        private void UpdateRectangles()
-        {
-            Canvas.Children.Clear();
-            if (!File.Exists(ImagePath) || !File.Exists(TxtPath))
+            catch (Exception exception)
             {
-                return;
-            }
-
-            var lines = SymbolFileParser.ParseFile(TxtPath);
-            var size = GetImageSize(ImagePath);
-            var k = 1.0 * ImageGrid.ActualWidth / size.Width;
-
-            foreach (var line in lines)
-            {
-                AddSelectionRectangle(
-                    new Point(k * line.X, k * line.Y),
-                    new Point(k * line.X2, k * line.Y2));
+                Status = $"Convert error: {exception.Message}";
             }
         }
 
-        private void ShowImage(string path)
+        #endregion
+
+        #region Show Buttons
+
+        private void ShowTextFileButton_OnClick(object sender, RoutedEventArgs e)
         {
-            ImagePath = path;
-
-            Image.Source = new BitmapImage(new Uri(path, UriKind.Absolute));
-
-            UpdateRectangles();
+            TextWindow.Show(TxtPath);
         }
 
-        private void AddSelectionRectangle(Point point1, Point point2)
+        private void ShowImageButton_OnClick(object sender, RoutedEventArgs e)
         {
-            var topLeftPoint = new Point(
-                Math.Min(point1.X, point2.X), 
-                Math.Min(point1.Y, point2.Y));
-
-            Canvas.Children.Add(new Rectangle
-            {
-                Stroke = Brushes.Red,
-                StrokeThickness = 1,
-                Margin = new Thickness(
-                    topLeftPoint.X, topLeftPoint.Y, 
-                    topLeftPoint.X, topLeftPoint.Y),
-                Width = Math.Abs(point2.X - point1.X),
-                Height = Math.Abs(point2.Y - point1.Y)
-            });
+            ImageWindow.Show(ImagePath, TxtPath);
         }
 
-        private static Size GetImageSize(string path)
-        {
-            using (var stream = new FileStream(path, FileMode.Open, FileAccess.Read))
-            {
-                var frame = BitmapFrame.Create(stream, BitmapCreateOptions.DelayCreation, BitmapCacheOption.None);
+        #endregion
 
-                return new Size(frame.PixelWidth, frame.PixelHeight);
-            }
-        }
+        #endregion
     }
 }

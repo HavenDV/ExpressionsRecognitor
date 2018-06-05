@@ -23,6 +23,11 @@ namespace RecognitionLibrary.Converters
                 var text = await response.Content.ReadAsStringAsync();
                 var answer = Answer.FromJson(text);
 
+                if (string.IsNullOrWhiteSpace(answer.Latex))
+                {
+                    throw new Exception(answer.Error);
+                }
+
                 return answer.Latex;
             }
         }
