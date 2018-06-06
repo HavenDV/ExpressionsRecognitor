@@ -152,7 +152,7 @@ namespace RecognitionLibrary.Tests
             BaseLineTest(@"=", 285, 245, 115, 65, lines[2]);
             BaseLineTest(@"u", 430, 125, 105, 93, lines[3]);
             BaseLineTest(@"2", 545, 55, 52, 78, lines[4]);
-            BaseLineTest(@"x", 600, 20, 40, 48, lines[5]);
+            BaseLineTest(@"x", 600, 20, 61, 55, lines[5]);
             BaseLineTest(@"-", 410, 275, 230, 20, lines[6]);
             BaseLineTest(@"r", 490, 390, 71, 93, lines[7]);
         }
