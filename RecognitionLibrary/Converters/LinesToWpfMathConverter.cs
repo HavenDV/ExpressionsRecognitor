@@ -50,7 +50,7 @@ namespace RecognitionLibrary.Converters
                 return $@"\frac{{{first}}}{{{second}}}";
             }
 
-            if (lines.Any(line => line.Symbol == @"\surd"))
+            if (lines.Any(line => line.Symbol == @"\sqrt"))
             {
                 var first = ConvertGroup(lines.Skip(1).ToList());
 
@@ -63,7 +63,7 @@ namespace RecognitionLibrary.Converters
                 var first = ConvertGroup(lines.Take(index).ToList());
                 var second = ConvertGroup(lines.Skip(index + 1).ToList());
 
-                return $@"\sum ^{{{first}}} _{{{second}}}";// Скорее всего нужно поправить
+                return $@"\sum ^{{{first}}} _{{{second}}}";
             }
 
             return string.Join(" ", lines.Select(line => line.Symbol));

@@ -16,7 +16,7 @@ namespace RecognitionLibrary.Tests
             Assert.IsNotNull(lines);
             Assert.AreEqual(6, lines.Count);
 
-            BaseLineTest(@"\surd", 10, 340, 401, 291, lines[0]);
+            BaseLineTest(@"\sqrt", 10, 340, 401, 291, lines[0]);
             BaseLineTest(@"t", 200, 379, 130, 242, lines[1]);
             BaseLineTest(@"=", 410, 450, 221, 111, lines[2]);
             BaseLineTest(@"S", 739, 99, 213, 283, lines[3]);
@@ -96,7 +96,7 @@ namespace RecognitionLibrary.Tests
             BaseLineTest(@"=", 205, 210, 102, 49, lines[2]);
             BaseLineTest(@"b", 320, 75, 75, 115, lines[3]);
             BaseLineTest(@"-", 425, 135, 47, 16, lines[4]);
-            BaseLineTest(@"\surd", 530, 30, 235, 170, lines[5]);
+            BaseLineTest(@"\sqrt", 530, 30, 235, 170, lines[5]);
             BaseLineTest(@"D", 635, 80, 116, 110, lines[6]);
             BaseLineTest(@"-", 308, 235, 472, 16, lines[7]);
             BaseLineTest(@"2", 470, 295, 68, 109, lines[8]);
