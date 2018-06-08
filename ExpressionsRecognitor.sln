@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecognitionApplication", "R
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecognitionLibrary.Tests", "RecognitionLibrary.Tests\RecognitionLibrary.Tests.csproj", "{8B0A681B-C087-4C5A-8FA1-F4809691102B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecognitorConsoleApplication", "RecognitorApplication.Console\RecognitorConsoleApplication.csproj", "{433C528C-7D85-4B2A-95CA-20DEBAAF58E3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{8B0A681B-C087-4C5A-8FA1-F4809691102B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8B0A681B-C087-4C5A-8FA1-F4809691102B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8B0A681B-C087-4C5A-8FA1-F4809691102B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{433C528C-7D85-4B2A-95CA-20DEBAAF58E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{433C528C-7D85-4B2A-95CA-20DEBAAF58E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{433C528C-7D85-4B2A-95CA-20DEBAAF58E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{433C528C-7D85-4B2A-95CA-20DEBAAF58E3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

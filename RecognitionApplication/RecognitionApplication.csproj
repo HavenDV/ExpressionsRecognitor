@@ -34,6 +34,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="WpfMath, Version=0.5.0.41790, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\WpfMath.0.5.0\lib\net40\WpfMath.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xaml">
@@ -44,9 +47,6 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="WpfMath, Version=0.5.0.41790, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\WpfMath.0.5.0\lib\net40\WpfMath.dll</HintPath>
-    </Reference>
     <ApplicationDefinition Include="App.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
