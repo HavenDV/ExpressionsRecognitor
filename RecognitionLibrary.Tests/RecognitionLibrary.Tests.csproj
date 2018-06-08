@@ -48,6 +48,8 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ImageToLatexConverterTests.cs" />
+    <Compile Include="LinesToWpfMathConverterTests.cs" />
     <Compile Include="SymbolFileParserTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utilities\TestUtilities.cs" />

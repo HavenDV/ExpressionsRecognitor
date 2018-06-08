@@ -16,7 +16,10 @@ namespace RecognitionApplication
 
         private string TxtPath { get; set; }
         private string ImagePath { get; set; }
-        private string Status { set => StatusTextBlock.Text = value; }
+        private string Status
+        {
+            set { StatusTextBlock.Text = value; }
+        }
 
         #endregion
 

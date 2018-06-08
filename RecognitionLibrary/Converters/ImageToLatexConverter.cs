@@ -60,8 +60,10 @@ namespace RecognitionLibrary.Converters
         #region Cache
 
 
-        private static string GetCachePath() =>
-            Path.Combine(Path.GetTempPath(), "recognition.txt");
+        private static string GetCachePath()
+        {
+            return Path.Combine(Path.GetTempPath(), "recognition.txt");
+        }
 
         private static Dictionary<string, string> GetCache()
         {

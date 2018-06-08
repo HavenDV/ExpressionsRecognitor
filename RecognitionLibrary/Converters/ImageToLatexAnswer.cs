@@ -76,7 +76,10 @@ namespace RecognitionLibrary.Converters
 
     public partial class Answer
     {
-        public static Answer FromJson(string json) => JsonConvert.DeserializeObject<Answer>(json, Converter.Settings);
+        public static Answer FromJson(string json)
+        {
+            return JsonConvert.DeserializeObject<Answer>(json, Converter.Settings);
+        }
     }
 
     internal static class Converter
