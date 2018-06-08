@@ -1,7 +1,6 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
-using System.Threading.Tasks;
 using RecognitionLibrary.Converters;
 
 namespace RecognitorConsoleApplication
@@ -15,7 +14,7 @@ namespace RecognitorConsoleApplication
             var path = args.LastOrDefault();
 
             Console.WriteLine("Converting...");
-            var result = Convert(path);
+            var result = ImageToLatexConverter.ConvertAsync(path).GetAwaiter().GetResult();
 
             if (needOutput)
             {
@@ -24,22 +23,14 @@ namespace RecognitorConsoleApplication
                 var to = index1 >= 0 ? args[index1 + 1] : args[index2 + 1];
 
                 File.WriteAllText(to, result);
+
+                Console.WriteLine("Done.");
             }
             else
             {
                 Console.WriteLine("Result:");
                 Console.WriteLine(result);
             }
-        }
-
-        private static string Convert(string path)
-        {
-            return ConvertAsync(path).GetAwaiter().GetResult();
-        }
-
-        private static async Task<string> ConvertAsync(string path)
-        {
-            return await ImageToLatexConverter.ConvertAsync(path);
         }
     }
 }
