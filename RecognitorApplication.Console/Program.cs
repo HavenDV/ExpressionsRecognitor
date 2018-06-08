@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using RecognitionLibrary.Converters;
 
 namespace RecognitorConsoleApplication
@@ -9,10 +10,10 @@ namespace RecognitorConsoleApplication
         {
             var path = args[0];
 
-            Convert(path);
+            Convert(path).GetAwaiter().GetResult();
         }
 
-        private static async void Convert(string path)
+        private static async Task Convert(string path)
         {
             Console.WriteLine("Converting...");
             var actual = await ImageToLatexConverter.ConvertAsync(path);
