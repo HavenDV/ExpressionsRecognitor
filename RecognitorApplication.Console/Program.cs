@@ -1,25 +1,45 @@
 ﻿using System;
+using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 using RecognitionLibrary.Converters;
 
 namespace RecognitorConsoleApplication
 {
-    class Program
+    // ReSharper disable once ClassNeverInstantiated.Global
+    internal class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
-            var path = args[0];
+            var needOutput = args.Contains("--output") || args.Contains("-o");
+            var path = args.LastOrDefault();
 
-            Convert(path).GetAwaiter().GetResult();
+            Console.WriteLine("Converting...");
+            var result = Convert(path);
+
+            if (needOutput)
+            {
+                var index1 = args.ToList().IndexOf("--output");
+                var index2 = args.ToList().IndexOf("-o");
+                var to = index1 >= 0 ? args[index1 + 1] : args[index2 + 1];
+
+                File.WriteAllText(to, result);
+            }
+            else
+            {
+                Console.WriteLine("Result:");
+                Console.WriteLine(result);
+            }
         }
 
-        private static async Task Convert(string path)
+        private static string Convert(string path)
         {
-            Console.WriteLine("Converting...");
-            var actual = await ImageToLatexConverter.ConvertAsync(path);
+            return ConvertAsync(path).GetAwaiter().GetResult();
+        }
 
-            Console.WriteLine("Result:");
-            Console.WriteLine(actual);
+        private static async Task<string> ConvertAsync(string path)
+        {
+            return await ImageToLatexConverter.ConvertAsync(path);
         }
     }
 }
