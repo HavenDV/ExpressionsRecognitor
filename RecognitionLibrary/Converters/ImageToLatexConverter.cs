@@ -85,7 +85,7 @@ namespace RecognitionLibrary.Converters
                 return null;
             }
 
-            return dictionary.TryGetValue(path, out var result) ? result : null;
+            return dictionary.ContainsKey(path) ? dictionary[path] : null;
         }
 
         private static void SaveToCache(string path, string value)
