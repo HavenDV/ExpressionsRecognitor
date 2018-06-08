@@ -32,6 +32,11 @@ namespace RecognitionLibrary.Parsers
 
         public static List<Line> ParseFile(string path)
         {
+            if (!File.Exists(path))
+            {
+                return new List<Line>();
+            }
+
             var lines = File.ReadAllLines(path);
 
             return Parse(lines);

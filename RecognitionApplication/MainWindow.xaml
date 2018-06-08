@@ -8,22 +8,46 @@
         Title="Expression Recognitor" Height="450" Width="800">
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="20"></RowDefinition>
+            <RowDefinition Height="30"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
-            <RowDefinition Height="20"></RowDefinition>
-            <RowDefinition Height="20"></RowDefinition>
-            <RowDefinition Height="20"></RowDefinition>
+            <RowDefinition Height="30"></RowDefinition>
             <RowDefinition Height="20"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="50*"></ColumnDefinition>
             <ColumnDefinition Width="50*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <controls:FormulaControl Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" x:Name="FormulaControl" Formula="\left(x^2 + 2 \cdot x + 2\right) = 0"/>
-        <TextBox Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" x:Name="FormulaTextBox" Text="\left(x^2 + 2 \cdot x + 2\right) = 0" TextChanged="FormulaTextBox_TextChanged"/>
-        <Button Grid.Row="2" Grid.Column="0" Content="Open Image" Click="OpenImageButton_OnClick"/>
-        <Button Grid.Row="2" Grid.Column="1" Content="Open Text File" Click="OpenTextFileButton_OnClick"/>
-        <Button Grid.Row="3" Grid.Column="0" x:Name="ShowImageButton" IsEnabled="False" Content="Show Image" Click="ShowImageButton_OnClick"/>
-        <Button Grid.Row="3" Grid.Column="1" x:Name="ShowTextButton" IsEnabled="False" Content="Show Text File" Click="ShowTextFileButton_OnClick"/>
-        <TextBlock Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" x:Name="StatusTextBlock"/>
+        <DockPanel Grid.ColumnSpan="2">
+            <Menu DockPanel.Dock="Top">
+                <MenuItem Header="_File">
+                    <MenuItem Header="_Open Image File" Click="OpenImageButton_OnClick"/>
+                    <MenuItem Header="_Open Text File" Click="OpenTextFileButton_OnClick"/>
+                    <MenuItem Header="_Exit" Click="ExitMenuItem_OnClick"/>
+                </MenuItem>
+                <MenuItem Header="_Show">
+                    <MenuItem x:Name="ShowTextFileMenuItem" Header="_Show Text File" IsEnabled="False" Click="ShowTextFileButton_OnClick" />
+                </MenuItem>
+            </Menu>
+            <StackPanel></StackPanel>
+        </DockPanel>
+        <Label Grid.Row="1" Grid.Column="0" Content="Input Image:"/>
+        <Label Grid.Row="1" Grid.Column="1" Content="Output Image From Latex Formula:"/>
+        <Grid Grid.Row="2" Grid.Column="0" x:Name="ImageGrid">
+            <Image x:Name="Image" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            <Canvas x:Name="Canvas"/>
+        </Grid>
+        <controls:FormulaControl Grid.Row="2" Grid.Column="1" x:Name="FormulaControl" Formula="\left(x^2 + 2 \cdot x + 2\right) = 0"/>
+        <Grid Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="0" Content="Output Latex Text:"/>
+            <TextBox Grid.Column="1" x:Name="FormulaTextBox" Text="\left(x^2 + 2 \cdot x + 2\right) = 0" TextChanged="FormulaTextBox_TextChanged"/>
+        </Grid>
+        <StatusBar Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2">
+            <TextBlock x:Name="StatusTextBlock"/>
+        </StatusBar>
     </Grid>
 </Window>
