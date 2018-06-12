@@ -56,12 +56,10 @@ namespace RecognitionApplication
 
             TxtPath = dialog.FileName;
 
+            ShowImage();
+
             ShowTextFileMenuItem.IsEnabled = true;
-
-            var lines = SymbolFileParser.ParseFile(TxtPath);
-            var formula = LinesToWpfMathConverter.Convert(lines);
-
-            FormulaTextBox.Text = formula;
+            ShowTextFileResultMenuItem.IsEnabled = true;
         }
 
         private async void OpenImageButton_OnClick(object sender, RoutedEventArgs e)
@@ -104,6 +102,14 @@ namespace RecognitionApplication
             TextWindow.Show(TxtPath);
         }
 
+        private void ShowTextFileResultButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            var lines = SymbolFileParser.ParseFile(TxtPath);
+            var formula = LinesToWpfMathConverter.Convert(lines);
+
+            FormulaTextBox.Text = formula;
+        }
+        
         #endregion
 
         private void ExitMenuItem_OnClick(object sender, RoutedEventArgs e)
@@ -117,7 +123,11 @@ namespace RecognitionApplication
 
         private void ShowImage()
         {
-            Image.Source = new BitmapImage(new Uri(ImagePath, UriKind.Absolute));
+            if (File.Exists(ImagePath))
+            {
+                Image.Source = new BitmapImage(new Uri(ImagePath, UriKind.Absolute));
+            }
+
             UpdateRectangles();
         }
 

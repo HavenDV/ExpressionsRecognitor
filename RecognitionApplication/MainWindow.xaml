@@ -27,6 +27,7 @@
                 </MenuItem>
                 <MenuItem Header="_Show">
                     <MenuItem x:Name="ShowTextFileMenuItem" Header="_Show Text File" IsEnabled="False" Click="ShowTextFileButton_OnClick" />
+                    <MenuItem x:Name="ShowTextFileResultMenuItem" Header="_Show Text File Result" IsEnabled="False" Click="ShowTextFileResultButton_OnClick" />
                 </MenuItem>
             </Menu>
             <StackPanel></StackPanel>
